@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="\styles\css\output.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://kit.fontawesome.com/ec46b80c81.css" crossorigin="anonymous" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MB Salon</title>
+  </head>
+
+  <body class="bg-[#353232] overflow-hidden">
+   
+    <div class="grid sm:grid-cols-2">
+      <!--contenedor padre-->
+      <div class="flex flex-col">
+        <!--LOGO (div izquierda)-->
+
+        <div class="w-full flex flex-row justify-center items-center">
+
+          <a class="" href="/templates/login.html">
+          <img
+          src="/images/pestañeo.png"
+          class="rounded-full"
+          alt="Imagen redondeada"
+          />
+        </a>
+            <p class="text-white text-7xl">Pestañeo</p>
+        </div>
+        <!--div del logo y MB Salon -->
+
+        <div class="w-3/5 h-4/6 mt-10 pt-10 mx-auto bg-white rounded-md">
+          <!-- FORMS-->
+          <div class="p-8 mx-8 mb-8">
+            <h1 class="flex sm:text-bold mb-10 justify-center md:text-3xl sm:text-3xl text-xl text-[#E90074] whitespace-nowrap">
+              Iniciar Sesión
+            </h1>
+            <form id="loginFormAdmin" class="mt-8" method="POST">
+              <div class="relative w-full mx-auto my-auto">
+                <input id="correo" name="correo" type="email"
+                  class="peer w-full h-full mb-6 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-gray-400 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                  placeholder="" required
+                />
+                <label
+                  class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-base text-lg peer-focus:text-lg before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900"
+                >
+                  Correo
+                </label>
+              </div>
+
+              <div class="relative w-full mx-auto my-auto">
+                <input type="password" id="contraseña" name="contraseña"
+                  class="peer w-full h-full mb-6 bg-transparent text-blue-gray-700 font-sans font-normal outline outline-0 focus:outline-0 disabled:bg-blue-gray-50 disabled:border-0 transition-all placeholder-shown:border placeholder-shown:border-blue-gray-200 placeholder-shown:border-gray-400 border focus:border-2 border-t-transparent focus:border-t-transparent text-sm px-3 py-5 rounded-[7px] border-blue-gray-200 focus:border-gray-900"
+                  placeholder="" required
+                >
+                <label 
+                  class="flex w-full h-full select-none pointer-events-none absolute left-0 font-normal !overflow-visible truncate peer-placeholder-shown:text-blue-gray-500 leading-tight peer-focus:leading-tight peer-disabled:text-transparent peer-disabled:peer-placeholder-shown:text-blue-gray-500 transition-all -top-1.5 peer-placeholder-shown:text-base text-lg peer-focus:text-lg before:content[' '] before:block before:box-border before:w-2.5 before:h-1.5 before:mt-[6.5px] before:mr-1 peer-placeholder-shown:before:border-transparent before:rounded-tl-md before:border-t peer-focus:before:border-t-2 before:border-l peer-focus:before:border-l-2 before:pointer-events-none before:transition-all peer-disabled:before:border-transparent after:content[' '] after:block after:flex-grow after:box-border after:w-2.5 after:h-1.5 after:mt-[6.5px] after:ml-1 peer-placeholder-shown:after:border-transparent after:rounded-tr-md after:border-t peer-focus:after:border-t-2 after:border-r peer-focus:after:border-r-2 after:pointer-events-none after:transition-all peer-disabled:after:border-transparent peer-placeholder-shown:leading-[3.75] text-gray-500 peer-focus:text-gray-900 before:border-blue-gray-200 peer-focus:before:!border-gray-900 after:border-blue-gray-200 peer-focus:after:!border-gray-900"
+                >
+                  Contraseña
+                </label>
+              </div>
+              <div class="flex justify-center p-4">
+                <button type="submit" id="loginBtn"
+                  class="sm:w-60 w-fit bg-[#E90074] p-4 rounded-xl text-white text-xl hover:bg-red-950 transition-colors ease-in-out duration-[400ms]">
+                  Iniciar sesión
+                </button>
+              </div>
+
+            </form>
+            <script>
+              document.getElementById("loginForm").addEventListener("submit", function(event){
+                  event.preventDefault();
+
+                  
+                  const email = document.getElementById("correo").value;
+                  const password = document.getElementById("contraseña").value;
+
+                  fetch("http://localhost:3000/login", {
+                      method: "POST",
+                      headers: {
+                          "Content-Type": "application/json"
+                      },
+                      body: JSON.stringify({ email: email, password: password })
+                  })
+                  .then(response => response.json())
+                  .then(data => {
+                      if (data.success) {
+                          localStorage.setItem("success",data.success);
+                          window.location.assign("/templates/index.html");
+                      } else {
+                          alert("Información equivocada");
+                      }
+                  })
+                  .catch(error => {
+                      console.error("Error:", error);
+                  });
+              });
+          </script>
+          </div>
+        </div>
+        <!-- fin del div forms *el de background blanco-->
+      </div>
+      <!-- fin del div  izquierda -->
+
+      <div class="bg-black sm:block">
+        <!-- div imagen (el de la derecha)-->
+        <img
+          src="/images/peines.jpeg"
+          class="h-screen w-full object-cover opacity-50 "
+          alt="Imagen grandota"
+        />
+      </div>
+    </div>
+    <!-- fin div padre-->
+  </body>
+</html>
